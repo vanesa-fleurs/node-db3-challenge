@@ -47,6 +47,8 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
     JOIN Customers ON Customers.CustomerID = Orders.CustomerID
     ```
 
+
+
 ### Database Methods
 
 Write helpers methods in `./schemes/scheme-model.js` that match the following specifications:
