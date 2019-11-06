@@ -19,9 +19,44 @@ For this lab you will
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - Display the ProductName and CategoryName for all products in the database. Shows 76 records.
+
+    ```
+    SELECT Products.productName, Categories.categoryName FROM products
+    JOIN Categories ON Products.CategoryID = Categories.CategoryID
+    ```
+
 - Display the OrderID and ShipperName for all orders placed before January 9, 1997. Shows 161 records.
+    ```
+    SELECT Orders.OrderID, Shippers.ShipperName , Orders.OrderDate FROM Orders
+    JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+    WHERE Orders.OrderDate < '1997-01-09'
+    ```
+
 - Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
+    ```
+    SELECT Orders.OrderID, Products.ProductName, OrderDetails.Quantity FROM Products
+    JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
+    JOIN OrderDetails ON OrderDetails.ProductID = Products.ProductID
+    WHERE Orders.OrderID = 10251
+    ORDER BY Products.ProductName asc
+    ``` 
+
+    OR
+    
+    ```
+    SELECT ProductName, Quantity from OrderDetails
+    JOIN Products on OrderDetails.ProductID = ProductID
+    WHERE OrderID = 10251
+     ORDER BY Products.ProductName asc
+    ```
+
 - Display the OrderID, CustomerName and the employee's LastName for every order. All columns should be labeled clearly. Displays 196 records.
+    ```
+    SELECT Orders.OrderID, Customers.CustomerName, Employees.LastName AS EmploeeLastName FROM Orders
+    JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID
+    JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+
+    ```
 
 ### Database Methods
 
