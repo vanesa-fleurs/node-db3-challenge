@@ -7,7 +7,7 @@
 - Knex Queries
 - Modular Code
 
-## Assignment
+## Assignment I
 
 For this lab you will
 
@@ -19,9 +19,63 @@ For this lab you will
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - Display the ProductName and CategoryName for all products in the database. Shows 76 records.
+
+    ```
+    SELECT Products.productName, Categories.categoryName FROM products
+    JOIN Categories ON Products.CategoryID = Categories.CategoryID
+    ```
+
 - Display the OrderID and ShipperName for all orders placed before January 9, 1997. Shows 161 records.
+    ```
+    SELECT Orders.OrderID, Shippers.ShipperName , Orders.OrderDate FROM Orders
+    JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+    WHERE Orders.OrderDate < '1997-01-09'
+    ```
+
 - Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
+    ```
+    SELECT Orders.OrderID, Products.ProductName, OrderDetails.Quantity FROM Products
+    JOIN Orders ON OrderDetails.OrderID = Orders.OrderID
+    JOIN OrderDetails ON OrderDetails.ProductID = Products.ProductID
+    WHERE Orders.OrderID = 10251
+    ORDER BY Products.ProductName asc
+    ``` 
+
+    OR
+    
+    ```
+    SELECT ProductName, Quantity from OrderDetails
+    JOIN Products on OrderDetails.ProductID = ProductID
+    WHERE OrderID = 10251
+     ORDER BY Products.ProductName asc
+    ```
+
 - Display the OrderID, CustomerName and the employee's LastName for every order. All columns should be labeled clearly. Displays 196 records.
+    ```
+    SELECT Orders.OrderID, Customers.CustomerName, Employees.LastName AS EmploeeLastName FROM Orders
+    JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID
+    JOIN Customers ON Customers.CustomerID = Orders.CustomerID
+
+    ```
+
+************************************************************************************
+## Assignment
+
+For this lab you will
+
+- write SQL statements against the `northwind.db3` database. Once you have the correct SQL Statement for each query, write it inside the _queries.sql_ file under the corresponding comment.
+- write the db helper methods for the `schemes` resource in `./schemes/scheme-model.js`
+
+### Multi Table Queries
+
+Use a graphical tool like `SQLite Studio` to open `./data/northwind.db3` and execute the following queries:
+
+- Display the ProductName and CategoryName for all products in the database. Returns 77 records.
+- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Returns 429 records.
+- Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Returns 3 records.
+- Display the OrderID, curstomer's Company Name and the employee's Last Name for every order. All columns should be labeled clearly. Returns 16,789 records.
+
+************************************************************************************
 
 ### Database Methods
 
